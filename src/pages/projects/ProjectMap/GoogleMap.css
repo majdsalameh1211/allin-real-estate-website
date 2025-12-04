@@ -1,0 +1,40 @@
+/* src/components/GoogleMap/GoogleMap.css */
+
+.google-map-container {
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  border-radius: 0.75rem;
+}
+
+.map-loading,
+.map-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #6b7280;
+  font-family: 'Inter', sans-serif;
+}
+
+.map-loading .spinner {
+  border: 3px solid rgba(212, 175, 55, 0.1);
+  border-top: 3px solid #D4AF37;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.map-loading p,
+.map-error p {
+  margin: 0;
+  font-size: 0.875rem;
+}

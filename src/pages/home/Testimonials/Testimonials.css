@@ -1,0 +1,232 @@
+/* Testimonials Section - DARK THEME */
+.testimonials-section {
+  padding: 5rem 0;
+  background-color: #2C2416; /* Dark brown background */
+}
+
+.testimonials-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.testimonials-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  color: #FAF8F3; /* Cream text */
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .testimonials-title {
+    font-size: 3.75rem;
+  }
+}
+
+.testimonials-divider {
+  width: 6rem;
+  height: 0.25rem;
+  background-color: #D4AF37; /* Gold */
+  margin: 0 auto;
+  border-radius: 9999px;
+}
+
+/* Big Stat */
+.big-stat {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.big-stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #D4AF37 0%, #E8C547 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .big-stat-number {
+    font-size: 6rem;
+  }
+}
+
+.big-stat-desc {
+  color: #C5BDB0; /* Light cream text */
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+  max-width: 64rem;
+  margin: 0 auto 5rem;
+}
+
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Stat Card - BRIGHT CARDS */
+.stat-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background-color: #FAF8F3; /* BRIGHT CREAM BACKGROUND */
+  border-radius: 0.5rem;
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.stat-card:hover {
+  border-color: #D4AF37;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #D4AF37; /* Gold number */
+  margin-bottom: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.stat-label {
+  color: #3D3026; /* DARK BROWN TEXT - VISIBLE */
+  font-size: 0.875rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Testimonials Carousel */
+.testimonials-carousel {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.testimonials-swiper {
+  padding-bottom: 3rem;
+}
+
+/* Swiper Pagination */
+.testimonials-swiper :global(.swiper-pagination-bullet) {
+  background: #C5BDB0;
+  opacity: 0.5;
+  width: 12px;
+  height: 12px;
+}
+
+.testimonials-swiper :global(.swiper-pagination-bullet-active-gold) {
+  background: #D4AF37;
+  opacity: 1;
+}
+
+/* Testimonial Card - BRIGHT CARD */
+.testimonial-card {
+  text-align: center;
+  padding: 3rem;
+  background-color: #FAF8F3; /* BRIGHT CREAM BACKGROUND */
+  border-radius: 0.5rem;
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.quote-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #D4AF37;
+  margin: 0 auto 1.5rem;
+  opacity: 0.5;
+}
+
+.testimonial-text {
+  font-size: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  color: #1A1410; /* DARK BROWN - VISIBLE */
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  line-height: 1.75;
+}
+
+@media (min-width: 768px) {
+  .testimonial-text {
+    font-size: 1.875rem;
+  }
+}
+
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.author-name {
+  color: #D4AF37; /* Gold name */
+  font-family: 'Cinzel', serif;
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.author-location {
+  color: #3D3026; /* DARK BROWN - VISIBLE */
+  font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .testimonials-title {
+    font-size: 2.25rem;
+  }
+  
+  .big-stat-number {
+    font-size: 3rem;
+  }
+  
+  .big-stat-desc {
+    font-size: 1rem;
+  }
+  
+  .stats-grid {
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .stat-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.75rem;
+  }
+  
+  .testimonial-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .testimonial-text {
+    font-size: 1.125rem;
+  }
+}

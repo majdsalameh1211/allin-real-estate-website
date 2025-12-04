@@ -1,0 +1,272 @@
+/* Main Page Container - Matches About Background */
+.team-page {
+  padding: 5rem 0;
+  background-color: #2C2416;
+  min-height: 100vh;
+}
+
+.team-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header Section - Matches About Story Title */
+.team-hero {
+  max-width: 56rem;
+  margin: 0 auto 5rem;
+  text-align: center;
+}
+
+.team-page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  color: #FAF8F3;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .team-page-title {
+    font-size: 3.75rem;
+  }
+}
+
+.team-divider {
+  width: 6rem;
+  height: 0.25rem;
+  background-color: #D4AF37;
+  margin: 0 auto 3rem;
+  border-radius: 9999px;
+}
+
+.team-page-subtitle {
+  color: #C5BDB0;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  font-weight: 300;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+/* =================================================================
+   STRICT TEAM LAYOUT REPLICATION - ALWAYS HORIZONTAL
+   ================================================================= */
+
+/* Container for the list */
+.team-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* The Wrapper Class - ALWAYS ROW LAYOUT */
+.team-member {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  max-width: 80rem;
+  margin: 0 auto 5rem;
+  width: 100%;
+}
+
+/* Left Layout (Photo on left, text on right) */
+.team-member-left {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/* Right Layout (Photo on right, text on left) */
+.team-member-right {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+/* =================================================================
+   PHOTO STYLING (Exact Copy from About.css)
+   ================================================================= */
+.team-photo-wrapper {
+  position: relative;
+  width: 16rem;
+  height: 16rem;
+  flex-shrink: 0;
+}
+
+.team-photo {
+  width: 16rem;
+  height: 16rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #D4AF37;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  background-color: #1A1410;
+}
+
+.team-photo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transform: scale(1.4);
+  transform-origin: center 30%;
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+.team-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #FAF8F3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-initial {
+  font-size: 3.75rem;
+  color: #D4AF37;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* =================================================================
+   LICENSE BADGE
+   ================================================================= */
+.license-badge {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #D4AF37 0%, #E8C547 100%);
+  color: #1A1410;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid #1A1410;
+}
+
+/* =================================================================
+   INFO STYLING (Exact Copy from About.css)
+   ================================================================= */
+.team-info {
+  flex: 1;
+}
+
+/* Text alignment based on layout direction */
+.team-info-left {
+  text-align: left;
+}
+
+.team-info-right {
+  text-align: right;
+}
+
+.team-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.875rem;
+  color: #D4AF37;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.team-title {
+  color: #C5BDB0;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.team-quote {
+  color: #D4AF37;
+  font-style: italic;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.team-bio {
+  color: #C5BDB0;
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  justify-content: center;
+  padding: 5rem 0;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(212, 175, 55, 0.2);
+  border-top-color: #D4AF37;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Adjustments - ONLY FOR VERY SMALL SCREENS */
+@media (max-width: 640px) {
+  .team-page {
+    padding: 3rem 0;
+  }
+
+  .team-hero {
+    margin-bottom: 3rem;
+  }
+
+  .team-member {
+    flex-direction: column !important;
+    margin-bottom: 4rem;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .team-info-left,
+  .team-info-right {
+    text-align: center;
+  }
+
+  .team-photo-wrapper,
+  .team-photo {
+    width: 14rem;
+    height: 14rem;
+  }
+
+  .team-name {
+    font-size: 1.5rem;
+  }
+
+  .license-badge {
+    font-size: 0.65rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-photo-wrapper,
+  .team-photo {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .license-badge {
+    font-size: 0.6rem;
+    padding: 0.35rem 0.85rem;
+  }
+}
