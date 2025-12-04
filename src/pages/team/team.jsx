@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { getPublicTeamMembers } from '../../services/api';
-import './Team.css';
+import './team.css';
 
 const Team = () => {
   const { t, i18n } = useTranslation();
