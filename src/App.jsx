@@ -5,7 +5,7 @@ import MainLayout from './layouts/MainLayout/MainLayout';
 import Home from './pages/home/Home';
 import Projects from './pages/projects/Projects';
 import Team from './pages/team/team';
-import Courses from './pages/courses/Courses';
+import Courses from './pages/courses/courses';
 
 // Legal pages
 import PrivacyPolicy from './pages/global/Footer/PrivacyPolicy/PrivacyPolicy';
