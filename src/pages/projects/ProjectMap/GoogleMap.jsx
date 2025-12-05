@@ -103,18 +103,28 @@ const MapComponent = ({ projects, selectedProjectId, onMarkerClick }) => {
             markersRef.current.push(marker);
         });
 
-        // Auto-fit bounds
-        const bounds = new window.google.maps.LatLngBounds();
-        geocodedProjects.forEach((project) => {
-            bounds.extend({ lat: project.lat, lng: project.lng });
-        });
-        map.fitBounds(bounds);
+        // LOGIC CHANGE: Center on selected project OR Fit all bounds
+        const selectedProjectData = geocodedProjects.find(p => p.id === selectedProjectId);
 
-        // Adjust zoom if needed
-        setTimeout(() => {
-            const zoom = map.getZoom();
-            if (zoom > 15) map.setZoom(15);
-        }, 100);
+        if (selectedProjectData) {
+            // Case 1: A project is selected -> Center but keep wide view
+            map.panTo({ lat: selectedProjectData.lat, lng: selectedProjectData.lng });
+            map.setZoom(13); // Changed from 16 to 13 (shows context/surroundings)
+        } else {
+            // Case 2: No selection -> Show all markers
+            const bounds = new window.google.maps.LatLngBounds();
+            if (geocodedProjects.length > 0) {
+                geocodedProjects.forEach((project) => {
+                    bounds.extend({ lat: project.lat, lng: project.lng });
+                });
+                map.fitBounds(bounds);
+
+                // Prevent zooming in too close if there's only 1 project in total
+                const listener = window.google.maps.event.addListenerOnce(map, "idle", () => {
+                    if (map.getZoom() > 15) map.setZoom(15);
+                });
+            }
+        }
 
     }, [map, geocodedProjects, selectedProjectId, onMarkerClick]);
 

@@ -3,12 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { getPublicTeamMembers } from '../../services/api';
+
 import './team.css';
 
 const Team = () => {
   const { t, i18n } = useTranslation();
   const [teamMembers, setTeamMembers] = useState([]);
   const [loading, setLoading] = useState(true);
+
 
   const { ref: heroRef, inView: heroInView } = useInView({
     threshold: 0.2,
@@ -53,6 +55,9 @@ const Team = () => {
   return (
     <section className="team-page">
       <div className="team-container">
+
+
+
         {/* Hero Section */}
         <motion.div
           ref={heroRef}
@@ -69,6 +74,7 @@ const Team = () => {
             {t('team.subtitle') || 'The dedicated professionals behind ALL IN Real Estate'}
           </p>
         </motion.div>
+        
 
         {/* Dynamic Team List */}
         <div className="team-list">

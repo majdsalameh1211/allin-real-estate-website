@@ -17,6 +17,7 @@ const Projects = () => {
   const { t, i18n } = useTranslation();
   const [searchParams] = useSearchParams();
 
+
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true
@@ -158,6 +159,7 @@ const Projects = () => {
         {/* Hero Header */}
         <section id="title" className="projects-hero">
           <div className="projects-hero-content">
+
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

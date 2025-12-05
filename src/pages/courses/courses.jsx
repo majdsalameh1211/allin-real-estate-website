@@ -10,6 +10,7 @@ const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
   const { ref: headerRef, inView: headerInView } = useInView({
     threshold: 0.2,
     triggerOnce: true
@@ -34,7 +35,8 @@ const Courses = () => {
   return (
     <section className="courses-page">
       <div className="courses-container">
-        
+
+
         {/* Header Section */}
         <motion.div
           ref={headerRef}
@@ -51,7 +53,7 @@ const Courses = () => {
             {t('courses.subtitle') || 'Expand your real estate knowledge with our expert-led masterclasses.'}
           </p>
         </motion.div>
-        
+
         {/* Content Section */}
         {loading ? (
           <div className="courses-loading">
@@ -59,15 +61,15 @@ const Courses = () => {
             <p>Loading courses...</p>
           </div>
         ) : courses.length > 0 ? (
-          <motion.div 
+          <motion.div
             className="courses-grid"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             {courses.map((course, index) => (
-              <motion.div 
-                key={course.id} 
+              <motion.div
+                key={course.id}
                 className="course-card-public"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -75,10 +77,10 @@ const Courses = () => {
               >
                 {/* Course Image */}
                 <div className="course-image-wrapper">
-                  <img 
-                    src={course.image} 
-                    alt={course.title} 
-                    className="course-image" 
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="course-image"
                   />
                   {course.price === 0 && (
                     <span className="course-badge">Free</span>
@@ -91,12 +93,12 @@ const Courses = () => {
                   <div className="course-meta">
                     <span className="course-level">{course.level}</span>
                     <span className="course-duration">
-                      <svg 
-                        width="16" 
-                        height="16" 
-                        viewBox="0 0 24 24" 
-                        fill="none" 
-                        stroke="currentColor" 
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -134,21 +136,21 @@ const Courses = () => {
             ))}
           </motion.div>
         ) : (
-          <motion.div 
+          <motion.div
             className="courses-content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="empty-state-card">
-              <svg 
-                width="80" 
-                height="80" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="1" 
-                strokeLinecap="round" 
+              <svg
+                width="80"
+                height="80"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="round"
                 strokeLinejoin="round"
               >
                 <path d="M22 10v6M2 10v6M12 2l8.5 5-8.5 5-8.5-5L12 2z" />
