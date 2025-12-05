@@ -8,14 +8,27 @@ const Hero = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    // Ensure video plays on mount
-    if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.log("Video autoplay prevented:", error);
-      });
+    const videoElement = videoRef.current;
+
+    if (videoElement) {
+      // CRITICAL: Force muted state for Mobile Browsers
+      // (React props sometimes lag behind browser policy checks)
+      videoElement.muted = true;
+      videoElement.defaultMuted = true;
+      videoElement.playsInline = true;
+
+      // Attempt to play
+      const playPromise = videoElement.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Autoplay prevented:", error);
+          // Auto-play failed (likely Low Power Mode active). 
+          // You could show a "Play" button here if strictly needed.
+        });
+      }
     }
   }, []);
-
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -32,6 +45,7 @@ const Hero = () => {
           className="hero-video"
           autoPlay
           muted
+          defaultMuted={true} /* FIX: Required for React video autoplay */
           loop
           playsInline
           preload="auto"
@@ -74,7 +88,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="hero-logo-section"
           >
-           <div className="hero-logo-text">
+            <div className="hero-logo-text">
 
 
               {/* Logo on top */}
