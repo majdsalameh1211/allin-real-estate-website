@@ -45,7 +45,6 @@ const Hero = () => {
           className="hero-video"
           autoPlay
           muted
-          defaultMuted={true} /* FIX: Required for React video autoplay */
           loop
           playsInline
           preload="auto"
