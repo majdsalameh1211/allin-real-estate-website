@@ -227,6 +227,9 @@ const Portfolio = () => {
                     className="property-card"
                     onMouseEnter={() => setHoveredCard(property.id)}
                     onMouseLeave={() => setHoveredCard(null)}
+                    /* FIX: Make the entire card clickable for Mobile/Touch users */
+                    onClick={() => handleViewDetails(property.id)}
+                    style={{ cursor: 'pointer' }}
                   >
                     {/* Image Container */}
                     <div className="property-image-wrapper">
@@ -259,7 +262,11 @@ const Portfolio = () => {
                           >
                             <button
                               className="property-view-btn"
-                              onClick={() => handleViewDetails(property.id)}
+                              /* FIX: Stop propagation so we don't trigger the parent click too */
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleViewDetails(property.id);
+                              }}
                             >
                               {t('portfolio.viewDetails')}
                             </button>
