@@ -359,7 +359,7 @@
   }
   /* NEW: Simulate 90% zoom on the entire content wrapper*/
   .hero-content {
-    transform: scale(0.9);
+    transform: scale(0.8);
     transform-origin: center center;
     width: 100%;
     height: 100%;

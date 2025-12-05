@@ -100,16 +100,24 @@ const Projects = () => {
     }
   }, [loading]);
 
+
   // Scroll to carousel section when project ID is in URL
   useEffect(() => {
     const projectIdFromUrl = searchParams.get('id');
 
     if (projectIdFromUrl && selectedProject && !loading) {
       setTimeout(() => {
-        // Scroll to the carousel section where the selected project is displayed
         const carouselSection = document.querySelector('.projects-carousel-section');
         if (carouselSection) {
-          carouselSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // FIX: Manual scroll calculation to account for Navbar height
+          const headerOffset = 120; // 80px Navbar + 40px breathing room
+          const elementPosition = carouselSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
         }
       }, 500);
     }
