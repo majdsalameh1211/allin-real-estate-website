@@ -50,7 +50,9 @@ const Projects = () => {
         const data = await getProjects(i18n.language, activeFilter);
         const projectsList = data.projects || data;
 
-        setProjects(projectsList);
+        const activeOnly = projectsList.filter(p => p.status === 'active');
+
+        setProjects(activeOnly);
 
         // Check if project ID is in URL
         const projectIdFromUrl = searchParams.get('id');

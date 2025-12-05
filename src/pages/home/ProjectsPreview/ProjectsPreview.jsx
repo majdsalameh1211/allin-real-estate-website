@@ -42,10 +42,7 @@ const Portfolio = () => {
         const activeProjects = projectsList.filter(p => p.status === 'active');
 
         // 2) Featured first, then non-featured
-        const sortedProjects = [
-          ...activeProjects.filter(p => p.featured === true),
-          ...activeProjects.filter(p => p.featured !== true)
-        ];
+        const sortedProjects = activeProjects.filter(p => p.featured === true);
 
         setProjects(sortedProjects);
 
