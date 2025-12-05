@@ -51,21 +51,24 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Main Container */
 .projects-page {
   background: #FAF8F3;
   min-height: 100vh;
   flex: 1;
+  
+  /* Scale entire page to 90% */
+  transform: scale(0.9);
+  transform-origin: top center;
+  width: 111.11%; /* Compensate for scale: 100% / 0.9 */
+  margin-left: -5.55%; /* Center after scaling: (111.11% - 100%) / 2 */
 }
 
 .projects-container {
   max-width: 95%;
-  /* Dynamic width - grows with screen */
   width: 100%;
   margin: 0 auto;
   padding: 3rem 1.5rem;
 }
-
 /* Set reasonable max-width for very large screens */
 @media (min-width: 1920px) {
   .projects-container {
@@ -200,6 +203,7 @@
 }
 
 /* Project Card */
+/* Project Card - Fixed uniform size */
 .projects-card {
   background: white;
   border-radius: 0.75rem;
@@ -208,6 +212,11 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border: 3px solid transparent;
+  
+  /* Fixed height for uniform cards */
+  height: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
 .projects-card:hover {
@@ -223,6 +232,7 @@
 .projects-card-image-wrapper {
   position: relative;
   height: 12rem;
+  flex-shrink: 0; /* Prevent image from shrinking */
   overflow: hidden;
 }
 
@@ -267,6 +277,9 @@
 
 .projects-card-info {
   padding: 1.5rem;
+  flex: 1; /* Fill remaining space */
+  display: flex;
+  flex-direction: column;
 }
 
 .projects-card-title {
@@ -275,6 +288,15 @@
   color: #1A1410;
   margin-bottom: 0.5rem;
   font-weight: 600;
+  
+  /* Limit title to 2 lines with ellipsis */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  min-height: 3.5rem; /* 2 lines minimum */
 }
 
 .projects-card-location {
@@ -284,6 +306,11 @@
   color: #6b7280;
   font-size: 0.875rem;
   margin-bottom: 0.75rem;
+  
+  /* Limit location to 1 line with ellipsis */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .projects-card-location svg {
@@ -296,6 +323,7 @@
   color: #D4AF37;
   font-size: 1.125rem;
   font-weight: 700;
+  margin-top: auto; /* Push price to bottom */
 }
 
 /* Section 3: Toggle Tabs (Tablet only) */
@@ -336,42 +364,98 @@
   height: 20px;
 }
 
+/* ==================== Details Grid ==================== */
 /* Section 3: Details Grid - 33% / 67% Layout */
+
+
+/* Compensate for scale transform spacing */
 .projects-details-section {
-  margin-top: 3rem;
-  /* Break out of container */
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  padding-left: 2rem;   /* Small margin on left */
-  padding-right: 2rem;  /* Small margin on right */
+  height: 90vh; 
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  
+  /* Scale down to 90% */
+  transform: scale(0.9);
+  transform-origin: center center;
+  
+  width: 100%;
+}
+
+/* Optional: Add extra spacing if needed due to scale */
+.projects-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  height: 100%;
+  width: 100%;
 }
 
 .projects-details-grid {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  /* 33% / 67% ratio */
+  grid-template-columns: 1fr 2fr; /* 33% Map, 67% Details */
   gap: 2rem;
-  max-width: none;  /* Remove any width constraints */
-  width: 100%;      /* Full width */
-
+  height: 100%; /* Fill the 80vh */
+  width: 100%;
 }
 
-/* Map Column - 33% */
+/* 2. Map Column (Left) */
 .projects-map-column {
-  position: relative;
+  height: 100%; /* Fill 80vh */
+  overflow: hidden;
 }
 
 .map-container {
-  position: relative;
+  width: 100%;
+  height: 100% !important; /* Force fill */
+  position: relative !important; /* No sticky needed anymore */
+  top: 0 !important;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 3. Details Column (Right) */
+.projects-details-column {
+  height: 100%; /* Fill 80vh */
+  
+  /* CRITICAL: Enable internal scrolling */
+  overflow-y: auto; 
+  padding-right: 10px; /* Space for scrollbar */
+  
+  /* Make scrollbar pretty */
+  scrollbar-width: thin;
+  scrollbar-color: #D4AF37 rgba(0,0,0,0.05);
+}
+
+/* Webkit Scrollbar Styling (Chrome/Safari) */
+.projects-details-column::-webkit-scrollbar {
+  width: 8px;
+}
+.projects-details-column::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+  border-radius: 4px;
+}
+.projects-details-column::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 4px;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 767px) {
+  .projects-details-grid {
+    grid-template-columns: 1fr; /* Stacked */
+  }
+  
+  /* On mobile, whichever is visible takes the full 80vh */
+  .map-container {
+    height: 100% !important;
+  }
+}
+
+.google-map-container {
   width: 100%;
   height: 100%;
+  min-height: 0; /* FIX: Allow it to shrink to fit the 80vh parent */
   border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border: 2px solid #e5e7eb;
-  position: sticky;
-  top: 100px;
-  /* Stick below navbar */
 }
 
 .map-iframe {
@@ -408,14 +492,6 @@
   flex-shrink: 0;
 }
 
-/* Details Column - 67% */
-.projects-details-column {
-  min-width: 0;
-  /* Prevents grid blowout */
-  display: block;
-  /* Always visible on desktop */
-
-}
 
 /* Loading & Error States */
 .projects-loading,

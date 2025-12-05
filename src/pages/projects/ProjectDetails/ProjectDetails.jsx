@@ -86,44 +86,40 @@ const ProjectDetails = ({ project }) => {
         transition={{ duration: 0.4 }}
         className="project-details"
       >
-        {/* Compact Image Preview Grid */}
-        <div className="project-details-preview-grid">
-          {previewImages.map((image, index) => (
-            <div
-              key={index}
-              className="preview-image-item"
-              onClick={() => openGallery(index)}
-            >
-              <img src={image} alt={`Preview ${index + 1}`} />
-              {index === 3 && images.length > 4 && (
-                <div className="preview-overlay">
-                  <span>+{images.length - 4} {t('projectDetails.moreImages')}</span>
-                </div>
-              )}
+
+        {/* Single Hero Image */}
+        <div className="project-details-hero-image" onClick={() => openGallery(0)}>
+          <img src={images[0]} alt={getTranslatedField(project, 'title')} />
+          {images.length > 1 && (
+            <div className="image-gallery-badge">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+              </svg>
+              +{images.length - 1} {t('projectDetails.moreImages')}
             </div>
-          ))}
+          )}
         </div>
 
         {/* Property Info */}
-        <div className="project-details-info">
-          <div className="details-header">
-            {project.badge && (
-              <span className="details-badge">{project.badge.toUpperCase()}</span>
-            )}
-            <h2 className="details-title">{getTranslatedField(project, 'title') || t('projectDetails.untitledProperty')}</h2>
-            <p className="details-location">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-              </svg>
-              {getTranslatedField(project, 'location') || t('projectDetails.locationNotSpecified')}
-            </p>
-          </div>
+        {/* Property Info - Two Column Grid */}
+        <div className="project-details-info-grid">
+          {/* Left Column */}
+          <div className="info-column-left">
+            <div className="details-header">
+              {project.badge && (
+                <span className="details-badge">{project.badge.toUpperCase()}</span>
+              )}
+              <h2 className="details-title">{getTranslatedField(project, 'title') || t('projectDetails.untitledProperty')}</h2>
+              <p className="details-location">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                </svg>
+                {getTranslatedField(project, 'location') || t('projectDetails.locationNotSpecified')}
+              </p>
+            </div>
 
-          <div className="details-divider"></div>
-
-          <div className="details-quick-info">
             {(project.price > 0 || project.pricePerMonth > 0) && (
-              <div className="quick-info-price">
+              <div className="details-price">
                 <span className="price-value">
                   {project.currency === 'ILS' ? '₪' : project.currency === 'USD' ? '$' : '€'}
                   {project.pricePerMonth
@@ -134,7 +130,7 @@ const ProjectDetails = ({ project }) => {
               </div>
             )}
 
-            <div className="quick-info-specs">
+            <div className="details-specs">
               {project.bedrooms > 0 && (
                 <span className="spec-chip">
                   <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
@@ -160,41 +156,45 @@ const ProjectDetails = ({ project }) => {
                 </span>
               )}
             </div>
-          </div>
 
-          <div className="details-type">
-            <span className="type-badge">
-              {project.type === 'forSale' ? t('projectDetails.forSale') :
-                project.type === 'forRent' ? t('projectDetails.forRent') :
-                  t('projectDetails.sold')}
-            </span>
-          </div>
+            <div className="details-type">
+              <span className="type-badge">
+                {project.type === 'forSale' ? t('projectDetails.forSale') :
+                  project.type === 'forRent' ? t('projectDetails.forRent') :
+                    t('projectDetails.sold')}
+              </span>
+            </div>
 
-          {getTranslatedField(project, 'shortDesc') && (
-            <>
-              <div className="details-divider"></div>
+            {getTranslatedField(project, 'shortDesc') && (
               <p className="details-short-desc">{getTranslatedField(project, 'shortDesc')}</p>
-            </>
-          )}
+            )}
 
-          {getTranslatedField(project, 'fullDesc') && (
-            <>
-              <div className="details-divider"></div>
+            <button
+              className="contact-btn-full"
+              onClick={() => navigate('/', { state: { scrollTo: 'contact' } })}
+            >
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+              {t('projectDetails.contact')}
+            </button>
+          </div>
+
+          {/* Right Column */}
+          <div className="info-column-right">
+            {getTranslatedField(project, 'fullDesc') && (
               <div className="details-description">
                 <h3 className="details-section-title">{t('projectDetails.description')}</h3>
                 <p className="details-text">{getTranslatedField(project, 'fullDesc')}</p>
               </div>
-            </>
-          )}
+            )}
 
-          {getTranslatedField(project, 'features') && getTranslatedField(project, 'features').length > 0 && (
-            <>
-              <div className="details-divider"></div>
+            {getTranslatedField(project, 'features') && getTranslatedField(project, 'features').length > 0 && (
               <div className="details-features">
                 <h3 className="details-section-title">{t('projectDetails.features')}</h3>
-                <ul className="features-list-compact">
+                <ul className="features-list-two-column">
                   {getTranslatedField(project, 'features').map((feature, index) => (
-                    <li key={index} className="feature-item-compact">
+                    <li key={index} className="feature-item">
                       <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
@@ -203,26 +203,7 @@ const ProjectDetails = ({ project }) => {
                   ))}
                 </ul>
               </div>
-            </>
-          )}
-
-          <div className="details-divider"></div>
-          <div className="details-actions">
-            <button
-              className="contact-btn"
-              onClick={() => navigate('/', { state: { scrollTo: 'contact' } })}
-            >
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-              </svg>
-              {t('projectDetails.contact')}
-            </button>
-            <button className="save-btn">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-              {t('projectDetails.save')}
-            </button>
+            )}
           </div>
         </div>
       </motion.div>
