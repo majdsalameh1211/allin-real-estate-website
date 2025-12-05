@@ -347,7 +347,7 @@
 }
 
 /* Laptop (1024px - 1536px) → 35% of screen */
-@media (min-width: 1024px) and (max-width: 1536px) {
+@media (min-width: 1024px) and (max-width: 1700px) {
 
   /* Container slightly wider */
   .content-card {
@@ -355,10 +355,16 @@
     max-width: 38vw;
     padding: 2rem 2rem;
     transform: translateY(-1rem);
-    /*max-height: 70vh;
-    overflow: hidden;
-    */
+
   }
+  /* NEW: Simulate 90% zoom on the entire content wrapper*/
+  .hero-content {
+    transform: scale(0.9);
+    transform-origin: center center;
+    width: 100%;
+    height: 100%;
+  }
+     
 .hero-buttons button {
   width: 13rem;      /* SAME WIDTH for all languages */
   height: 3.2rem;     /* SAME HEIGHT */
@@ -422,7 +428,7 @@
 
 
 /* Large desktop (>1536px) → 35% of screen */
-@media (min-width: 1536px) {
+@media (min-width: 1700px) {
   .content-card {
     width: 35vw;
     max-width: 35vw;
