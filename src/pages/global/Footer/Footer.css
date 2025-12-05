@@ -1,6 +1,7 @@
 /* Footer Section - BRIGHT CREAM BACKGROUND */
 .footer-section {
-  background-color: #FAF8F3; /* Bright cream - matches your image */
+  background-color: #FAF8F3;
+  /* Bright cream - matches your image */
   border-top: 2px solid rgba(212, 175, 55, 0.2);
   padding: 3rem 0;
 }
@@ -29,29 +30,36 @@
 
 .brand-logo {
   font-family: 'Cinzel', serif;
-  font-size: 3rem; /* BIGGER - was 2rem */
+  font-size: 3rem;
+  /* BIGGER - was 2rem */
   font-weight: 700;
   letter-spacing: 0.05em;
-  margin-bottom: 1.5rem; /* More spacing */
+  margin-bottom: 1.5rem;
+  /* More spacing */
   cursor: pointer;
   display: inline-block;
   transition: transform 0.3s ease;
 }
 
 .brand-all {
-  color: #D4AF37; /* Gold */
+  color: #D4AF37;
+  /* Gold */
 }
 
 .brand-in {
-  color: #1A1410; /* Dark brown */
+  color: #1A1410;
+  /* Dark brown */
 }
 
 .brand-tagline {
-  color: #3D3026; /* Dark brown text */
-  font-size: 1rem; /* BIGGER - was 0.875rem */
+  color: #3D3026;
+  /* Dark brown text */
+  font-size: 1rem;
+  /* BIGGER - was 0.875rem */
   font-weight: 300;
   line-height: 1.6;
-  max-width: 400px; /* Wider */
+  max-width: 400px;
+  /* Wider */
 }
 
 /* Right: Social Section - BIGGER */
@@ -61,9 +69,12 @@
 
 .social-title {
   font-family: 'Cinzel', serif;
-  font-size: 1.5rem; /* BIGGER - was 1.125rem */
-  color: #D4AF37; /* Gold */
-  margin-bottom: 1.5rem; /* More spacing */
+  font-size: 1.5rem;
+  /* BIGGER - was 1.125rem */
+  color: #D4AF37;
+  /* Gold */
+  margin-bottom: 1.5rem;
+  /* More spacing */
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 600;
@@ -72,22 +83,27 @@
 .social-icons {
   display: flex;
   justify-content: flex-end;
-  gap: 1.5rem; /* More spacing between icons */
+  gap: 1.5rem;
+  /* More spacing between icons */
 }
 
 .social-icon {
-  color: #3D3026; /* Dark brown */
+  color: #3D3026;
+  /* Dark brown */
   transition: all 0.3s ease;
   display: inline-block;
 }
 
 .social-icon:hover {
-  color: #D4AF37; /* Gold on hover */
+  color: #D4AF37;
+  /* Gold on hover */
 }
 
 .icon-svg {
-  width: 2rem; /* BIGGER - was 1.5rem */
-  height: 2rem; /* BIGGER - was 1.5rem */
+  width: 2rem;
+  /* BIGGER - was 1.5rem */
+  height: 2rem;
+  /* BIGGER - was 1.5rem */
 }
 
 /* Divider */
@@ -108,26 +124,32 @@
 }
 
 .copyright-text {
-  color: #3D3026; /* Dark brown */
+  color: #3D3026;
+  /* Dark brown */
   font-size: 0.875rem;
 }
 
 .legal-links {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  /* FIX: Prevent wrapping to next line */
   justify-content: center;
+  align-items: center;
   gap: 1.5rem;
 }
 
+/* FIX: Prevent link text from breaking into two lines */
 .legal-link {
-  color: #3D3026; /* Dark brown */
+  color: #3D3026;
   font-size: 0.875rem;
   transition: color 0.3s ease;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .legal-link:hover {
-  color: #D4AF37; /* Gold on hover */
+  color: #D4AF37;
+  /* Gold on hover */
 }
 
 /* Responsive */
@@ -136,68 +158,80 @@
     flex-direction: column;
     text-align: center;
   }
-  
+
   .footer-brand {
     width: 100%;
   }
-  
+
   .brand-logo {
-    font-size: 2.5rem; /* Slightly smaller on tablet */
+    font-size: 2.5rem;
+    /* Slightly smaller on tablet */
   }
-  
+
   .brand-tagline {
     margin: 0 auto;
     font-size: 0.9375rem;
   }
-  
+
   .footer-social {
     width: 100%;
     text-align: center;
   }
-  
+
   .social-title {
     font-size: 1.25rem;
   }
-  
+
   .social-icons {
     justify-content: center;
   }
-  
+
   .icon-svg {
     width: 1.75rem;
     height: 1.75rem;
   }
-  
+
   .footer-bottom {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .copyright-text {
     text-align: center;
   }
 }
 
 @media (max-width: 480px) {
-  .brand-logo {
-    font-size: 2rem; /* Even smaller on mobile */
+  brand-logo {
+    font-size: 2rem;
   }
-  
+
   .brand-tagline {
     font-size: 0.875rem;
   }
-  
+
   .social-title {
     font-size: 1.125rem;
   }
-  
+
   .icon-svg {
     width: 1.5rem;
     height: 1.5rem;
   }
-  
+
+  /* FIX: Force row layout on mobile and shrink text to fit */
   .legal-links {
-    flex-direction: column;
-    gap: 1rem;
+    flex-direction: row;
+    /* Force horizontal */
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    /* Smaller gap */
+    width: 100%;
+    justify-content: center;
+  }
+
+  .legal-link {
+    font-size: 0.7rem;
+    /* Smaller text to fit on one line */
   }
 }
