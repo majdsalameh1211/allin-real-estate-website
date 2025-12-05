@@ -9,7 +9,7 @@ function Navbar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -28,7 +28,7 @@ function Navbar() {
       const scrolled = window.scrollY > 50;
       setIsScrolled(scrolled);
 
-      // Only track active section if on home page
+      // 1. HOME PAGE: Track active section via Scroll
       if (location.pathname === '/' || location.pathname === '') {
         const sections = ['home', 'about', 'portfolio', 'services', 'testimonials', 'contact'];
         const current = sections.find((section) => {
@@ -40,6 +40,18 @@ function Navbar() {
         if (current) setActiveSection(current);
       }
     };
+
+    // 2. SUB-PAGES: Set active section based on URL Path
+    // (This logic runs immediately when location changes)
+    const path = location.pathname;
+    if (path.includes('team')) {
+      setActiveSection('about');     // Team -> About
+    } else if (path.includes('projects')) {
+      setActiveSection('portfolio'); // Projects -> Portfolio
+    } else if (path.includes('courses')) {
+      setActiveSection('services');  // Courses -> Services
+    }
+    // Note: If on Home ('/'), the scroll listener above takes over.
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -83,7 +95,7 @@ function Navbar() {
   // Handle logo click
   const handleLogoClick = () => {
     const isHomePage = location.pathname === '/' || location.pathname === '';
-    
+
     if (isHomePage) {
       // Scroll to top on home page
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -108,7 +120,7 @@ function Navbar() {
             onClick={handleLogoClick}
           >
             <img src="/logo-optimized.png" alt="ALL IN Logo" className="navbar-logo-image" />
-            <div className="navbar-logo-text" dir="ltr"> 
+            <div className="navbar-logo-text" dir="ltr">
               <span className="logo-all">ALL</span>
               <span className="logo-in">IN</span>
             </div>
@@ -130,7 +142,8 @@ function Navbar() {
                 >
                   {item.label}
                 </button>
-                {activeSection === item.id && location.pathname === '/' && (
+                {/* Remove the check for location.pathname === '/' */}
+                {activeSection === item.id && (
                   <motion.div
                     layoutId="underline"
                     className="navbar-underline"
@@ -144,7 +157,7 @@ function Navbar() {
           {/* Right Side: Language Switcher + Mobile Menu Button */}
           <div className="navbar-right">
             <LanguageSwitcher />
-            
+
             {/* Mobile Menu Toggle */}
             <button
               className="navbar-mobile-toggle"
@@ -198,7 +211,7 @@ function Navbar() {
                   aria-label="Close menu"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </button>
               </div>
@@ -215,7 +228,8 @@ function Navbar() {
                     className={`mobile-menu-item ${activeSection === item.id && location.pathname === '/' ? 'mobile-menu-item-active' : ''}`}
                   >
                     <span>{item.label}</span>
-                    {activeSection === item.id && location.pathname === '/' && (
+
+                    {activeSection === item.id && (
                       <motion.div
                         layoutId="mobile-indicator"
                         className="mobile-menu-indicator"
